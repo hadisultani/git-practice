@@ -127,3 +127,5 @@ the real file on a separate LFS server.
 - Only relevant when a repo tracks binary/large files
 
 Not needed for code-only repos.
+
+## 10. Adding one line here directly on GitHub.com editor to make the repo one commit ahead of the local repo. This is to practice git fetch vs git pull.
