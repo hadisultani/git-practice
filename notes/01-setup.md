@@ -32,6 +32,8 @@ git config --global --unset KEY
     default = simple
 [pull]
     rebase = true
+[fetch]
+    prune = true
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -51,6 +53,33 @@ git config --global --unset KEY
 | `upstream` | Pushes to configured upstream even if names differ |
 | `matching` | Pushes all local branches that have a matching remote — can be surprising |
 
+## Auto-prune stale remote branches
+
+After a PR is merged and the remote branch is deleted on GitHub, your
+local machine still lists it under `git branch -a` as a stale ref.
+`git fetch --prune` cleans those up automatically.
+
+```bash
+# One-off cleanup
+git fetch --prune
+
+# Set it globally so every fetch prunes automatically
+git config --global fetch.prune true
+```
+
+Add to `~/.gitconfig`:
+
+```ini
+[fetch]
+    prune = true
+```
+
+> Without this, `git branch -a` gradually fills up with dead remote refs
+> from merged/deleted branches. At work with hundreds of developers
+> this gets noisy fast.
+
+---
+
 ## Git LFS (Large File Storage)
 
 Installed automatically by GitHub Desktop. Handles large binary files
@@ -68,3 +97,40 @@ With LFS:     repo contains → tiny pointer (~130 bytes)
 - `required = true` — git errors rather than silently commit the real file
 
 > Only relevant when a repo tracks binary/large files. Not needed for code-only repos.
+
+---
+
+## Git aliases
+
+Shortcuts stored in `~/.gitconfig` that save keystrokes and encode good habits.
+
+```bash
+# Add aliases
+git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.sw switch
+git config --global alias.br "branch -vv"
+git config --global alias.lg "log --oneline --graph --decorate --all"
+git config --global alias.undo "reset --mixed HEAD~1"
+git config --global alias.unstage "restore --staged"
+git config --global alias.aliases "config --global --list"
+
+# The new branch alias — always branches from fresh main
+# Use at the START of new work, after a PR is merged
+git config --global alias.nb '!git checkout main && git pull && git checkout -b'
+
+# View all aliases
+git aliases
+
+# Edit .gitconfig directly
+code ~/.gitconfig
+```
+
+### nb alias — correct timing
+
+```
+PR merged → git pull (main updated) → git nb feature/next-task → do work → PR → repeat
+```
+
+> Never use git nb from inside another feature branch.
+> Always signals the start of a fresh piece of work from latest main.
