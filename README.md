@@ -30,7 +30,7 @@ git-practice/
 | [04-branching.md](notes/04-branching.md) | *(coming up)* |
 | [05-undoing.md](notes/05-undoing.md) | Amend, reset soft/mixed/hard, revert, stash |
 | [06-rebase.md](notes/06-rebase.md) | Basic rebase, interactive rebase, force push safely |
-| [07-pull-requests.md](notes/07-pull-requests.md) | *(coming up)* |
+| [07-pull-requests.md](notes/07-pull-requests.md) | PR workflow, merge strategies, branch protection, GitHub CLI |
 | [08-github-actions.md](notes/08-github-actions.md) | *(coming up)* |
 
 ## Environment
