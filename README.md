@@ -6,18 +6,19 @@ Personal git learning journal — commands, concepts, and notes built up through
 
 ```
 git-practice/
-├── README.md                  ← overview + index of all topics
+├── README.md                   ← overview + index of all topics
 ├── notes/
-│   ├── 01-setup.md            ← git config, .gitconfig, LFS
-│   ├── 02-basics.md           ← clone, staging, commit, push
+│   ├── 01-setup.md             ← git config, .gitconfig, LFS
+│   ├── 02-basics.md            ← clone, staging, commit, push
 │   ├── 03-fetch-pull-rebase.md ← fetch vs pull, remote-tracking, rebase
-│   ├── 04-branching.md        ← checkout, switch, restore, branch strategies
-│   ├── 05-undoing.md          ← amend, reset, revert, stash
-│   ├── 06-rebase.md           ← rebase concept + practice
-│   ├── 07-pull-requests.md    ← (coming up)
-│   └── 08-github-actions.md   ← (coming up)
+│   ├── 04-branching.md         ← checkout, switch, restore, branch strategies
+│   ├── 05-undoing.md           ← amend, reset, revert, stash
+│   ├── 06-rebase.md            ← rebase concept + practice
+│   ├── 07-pull-requests.md     ← (coming up)
+│   └── 08-github-actions.md    ← PR workflow, squash merge, branch protection, auto-merge
+│   └── 09-security.md          ← 2FA, branch protection, secret scanning, SSH
 └── practice/
-    └── sandbox.md             ← scratch file for trying things out
+    └── sandbox.md              ← scratch file for trying things out
 ```
 
 ## Notes index
@@ -32,6 +33,7 @@ git-practice/
 | [06-rebase.md](notes/06-rebase.md) | Basic rebase, interactive rebase, force push safely |
 | [07-pull-requests.md](notes/07-pull-requests.md) | PR workflow, merge strategies, branch protection, GitHub CLI |
 | [08-github-actions.md](notes/08-github-actions.md) | *(coming up)* |
+| [09-security.md](notes/09-security.md) | 2FA, branch protection, secret scanning, SSH, signed commits |
 
 ## Environment
 
