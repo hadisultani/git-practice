@@ -25,7 +25,7 @@ matters more than almost any other git skill.
 
 ```bash
 # 1. Create a feature branch
-git checkout -b feature/my-feature
+git switch -c feature/my-feature
 
 # 2. Do your work — one or more commits
 git add .
@@ -45,7 +45,7 @@ git push          # updates the open PR automatically
 # 6. PR gets approved and merged
 
 # 7. Clean up locally
-git checkout main
+git switch main
 git pull                                        # get the merged changes
 git branch -d feature/my-feature               # delete local branch
 git push origin --delete feature/my-feature    # delete remote branch
@@ -143,7 +143,7 @@ After squash and merge onto main:
 
 ```bash
 # Squash merge locally (without GitHub PR)
-git checkout main
+git switch main
 git merge --squash feature/my-feature
 git commit -m "feat: add login form"    # write the final clean message
 
@@ -295,7 +295,7 @@ Anything you want the reviewer to pay particular attention to.
 ```bash
 # Check out the PR branch locally to test it
 git fetch origin
-git checkout feature/my-feature
+git switch feature/my-feature
 
 # Or using GitHub CLI
 gh pr checkout 42
@@ -334,7 +334,7 @@ gh pr create --draft --title "feat: my feature" --body "Work in progress"
 brew install gh && gh auth login
 
 # Full PR workflow from terminal
-git checkout -b feature/my-feature
+git switch -c feature/my-feature
 git add . && git commit -m "feat: description"
 git push -u origin feature/my-feature
 gh pr create --title "feat: description" --body-file .github/pull_request_template.md
@@ -343,7 +343,7 @@ gh pr create --title "feat: description" --body-file .github/pull_request_templa
 gh pr merge --auto --squash
 
 # After PR merges — clean up
-git checkout main && git pull
+git switch main && git pull
 git branch -d feature/my-feature
 git push origin --delete feature/my-feature
 
