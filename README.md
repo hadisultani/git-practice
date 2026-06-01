@@ -14,8 +14,8 @@ git-practice/
 │   ├── 04-branching.md         ← checkout, switch, restore, branch strategies
 │   ├── 05-undoing.md           ← amend, reset, revert, stash
 │   ├── 06-rebase.md            ← rebase concept + practice
-│   ├── 07-pull-requests.md     ← (coming up)
-│   └── 08-github-actions.md    ← PR workflow, squash merge, branch protection, auto-merge
+│   ├── 07-pull-requests.md     ← PR workflow, squash merge, branch protection, auto-merge
+│   └── 08-github-actions.md    ← (coming up)
 │   └── 09-security.md          ← 2FA, branch protection, secret scanning, SSH
 └── practice/
     └── sandbox.md              ← scratch file for trying things out
