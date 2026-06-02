@@ -1,0 +1,20 @@
+---
+title: Git Practice
+subtitle: A practical reference from setup to daily use
+author: Hadi Sultani
+date: "2026"
+lang: en
+
+# Table of contents
+toc: true
+toc-depth: 2
+toc-title: Contents
+
+# PDF-specific settings (used by xelatex)
+documentclass: article
+geometry: "margin=1in"
+fontsize: 11pt
+colorlinks: true
+linkcolor: "blue"
+urlcolor: "blue"
+---

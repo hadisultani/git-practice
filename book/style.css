@@ -1,0 +1,147 @@
+/* ── Page layout ─────────────────────────────────────────────────────────── */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #24292f;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+}
+
+/* ── Headings ─────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: #1f2328;
+}
+
+h1 {
+    font-size: 2rem;
+    border-bottom: 2px solid #d0d7de;
+    padding-bottom: 0.4rem;
+    margin-top: 3rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3rem;
+}
+
+h3 { font-size: 1.1rem; }
+h4 { font-size: 1rem; color: #57606a; }
+
+/* ── Table of contents ────────────────────────────────────────────────────── */
+#TOC {
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    padding: 1.25rem 1.75rem;
+    margin: 2rem 0;
+}
+
+#TOC ul {
+    margin: 0.25rem 0;
+    padding-left: 1.5rem;
+}
+
+#TOC li { margin: 0.3rem 0; }
+
+#TOC a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+#TOC a:hover { text-decoration: underline; }
+
+/* ── Inline code ──────────────────────────────────────────────────────────── */
+code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.875em;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+    padding: 0.15em 0.4em;
+}
+
+/* ── Code blocks ──────────────────────────────────────────────────────────── */
+pre {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 1.1rem 1.4rem;
+    overflow-x: auto;
+    line-height: 1.5;
+    margin: 1rem 0;
+}
+
+pre code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.875rem;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #d4d4d4;
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────────── */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.25rem 0;
+    font-size: 0.95rem;
+}
+
+th, td {
+    border: 1px solid #d0d7de;
+    padding: 0.55rem 0.85rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background: #f6f8fa;
+    font-weight: 600;
+}
+
+tr:nth-child(even) td { background: #fbfbfb; }
+
+/* ── Blockquotes ──────────────────────────────────────────────────────────── */
+blockquote {
+    border-left: 4px solid #0969da;
+    background: #f6f8fa;
+    margin: 1rem 0;
+    padding: 0.6rem 1rem;
+    color: #57606a;
+    border-radius: 0 6px 6px 0;
+}
+
+blockquote p { margin: 0; }
+
+/* ── Horizontal rules ─────────────────────────────────────────────────────── */
+hr {
+    border: none;
+    border-top: 1px solid #d0d7de;
+    margin: 2.5rem 0;
+}
+
+/* ── Links ────────────────────────────────────────────────────────────────── */
+a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+/* ── Paragraphs and lists ─────────────────────────────────────────────────── */
+p { margin: 0.75rem 0; }
+
+ul, ol {
+    padding-left: 1.75rem;
+    margin: 0.5rem 0;
+}
+
+li { margin: 0.25rem 0; }
