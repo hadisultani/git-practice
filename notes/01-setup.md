@@ -1,10 +1,5 @@
 # 01 — Setup
 
-## Git version & tools
-- Git version: 2.53.0
-- Editor: VS Code
-- Repo created via GitHub Desktop, published through VS Code
-
 ## One-time global configuration
 
 ```bash
@@ -12,8 +7,12 @@ git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 git config --global core.editor "code --wait"
 git config --global push.default simple
+git config --global init.defaultBranch main
 
-# Verify everything saved
+# See all effective settings (global + local combined — what git actually uses)
+git config --list
+
+# See just the global config file
 cat ~/.gitconfig
 
 # Remove a setting
@@ -34,6 +33,8 @@ git config --global --unset KEY
     rebase = true
 [fetch]
     prune = true
+[init]
+    defaultBranch = main
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f

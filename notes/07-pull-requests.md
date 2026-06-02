@@ -317,7 +317,67 @@ gh pr create --draft --title "feat: my feature" --body "Work in progress"
 
 ---
 
-## 7. Merge strategies comparison
+## 7. Reviewing a PR with GitHub CLI
+
+```bash
+# See all PRs waiting for your review
+gh pr list --search "review-requested:@me"
+
+# Check out a PR locally to test it before approving
+gh pr checkout 42
+
+# Leave a review comment
+gh pr review 42 --comment --body "Left a question on line 42 of auth.js"
+
+# Approve the PR
+gh pr review 42 --approve
+
+# Approve with a comment
+gh pr review 42 --approve --body "LGTM — good approach on the token refresh"
+
+# Request changes
+gh pr review 42 --request-changes --body "See inline comments — the session timeout needs to handle the edge case"
+```
+
+---
+
+## 8. When the base branch has moved — updating a PR
+
+If main has received new commits since you opened your PR, GitHub may show
+"This branch is out of date with the base branch." Required status checks
+won't run (or will fail) until the branch is current.
+
+### Update with rebase (preferred — keeps history linear)
+
+```bash
+git fetch origin
+git rebase origin/main
+
+# If there are conflicts, resolve them:
+# ... edit conflicted files ...
+git add resolved-file.md
+git rebase --continue
+
+# Force push the updated branch (rebase rewrites hashes)
+git push --force-with-lease origin feature/my-branch
+```
+
+The open PR updates automatically — reviewers see the new commits.
+
+### Update with merge (simpler but adds a merge commit)
+
+```bash
+git fetch origin
+git merge origin/main
+git push origin feature/my-branch    # regular push — no force needed
+```
+
+> `--force-with-lease` is safer than `--force` — it refuses to push if someone
+> else has pushed to the branch since you last fetched. See 06-rebase.md for detail.
+
+---
+
+## 9. Merge strategies comparison
 
 | Strategy | History | Best for |
 |---|---|---|

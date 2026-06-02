@@ -8,6 +8,8 @@
 | `git reset` | Move HEAD backward, optionally unstage/discard | No (on shared branches) |
 | `git revert` | Create a new commit that undoes a previous one | Yes |
 | `git stash` | Temporarily shelve uncommitted changes | Yes (local only) |
+| `git restore --source` | Pull a single file back from a past commit | Yes |
+| `git clean` | Delete untracked files from the working tree | Yes (local only) |
 
 ---
 
@@ -95,7 +97,7 @@ abc1234     # any specific commit hash
 
 > ⚠️ --hard is permanent for uncommitted changes. There is no undo.
 > Only use it when you are certain you want to discard the work.
-> git reflog can recover reset commits — see notes/07-history.md.
+> git reflog can recover reset commits — see 12-reflog.md.
 
 ---
 
@@ -196,6 +198,70 @@ git stash pop                    # your work is back exactly as you left it
 
 ---
 
+## 5. restore --source — pull a file back from history
+
+Use when you want to recover a specific file from a past commit without
+reverting or resetting the whole branch. The rest of your history is untouched.
+
+```bash
+# Restore a file to how it looked N commits ago
+git restore --source=HEAD~1 -- config.yml
+
+# Restore from a specific commit hash
+git restore --source=abc1234 -- src/auth.js
+
+# Restore a file that was deleted in a past commit
+git log --oneline -- deleted-file.md         # find the last commit that had it
+git restore --source=abc1234 -- deleted-file.md
+```
+
+The file lands in your working tree as an unstaged change — review it,
+then stage and commit as normal.
+
+> Unlike `git checkout` (which can accidentally switch branches), `git restore`
+> only ever touches files — it is impossible to accidentally detach HEAD with it.
+
+---
+
+## 6. clean — remove untracked files
+
+Removes files that are not tracked by git — things that were never added or
+committed. Useful after a build that scattered output files, or when you want
+to reset your working tree completely.
+
+```bash
+# Dry run first — see what WOULD be deleted without deleting anything
+git clean -n
+
+# Delete untracked files (but not directories)
+git clean -f
+
+# Delete untracked files AND untracked directories
+git clean -fd
+
+# Also delete files ignored by .gitignore (build output, caches, etc.)
+git clean -fdx
+
+# Interactive — approve each file before deleting
+git clean -i
+```
+
+> ⚠️ `git clean` is permanent — deleted files cannot be recovered with git.
+> Always run `git clean -n` first to preview what will be removed.
+
+### clean vs reset --hard
+
+| Command | Removes committed changes? | Removes staged changes? | Removes untracked files? |
+|---|---|---|---|
+| `git reset --hard HEAD` | Yes | Yes | No |
+| `git clean -fd` | No | No | Yes |
+| Both together | Yes | Yes | Yes |
+
+Running both is the "nuclear full reset" — your working tree matches the last
+commit exactly with nothing extra lying around.
+
+---
+
 ## Decision guide — which tool to use?
 
 ```
@@ -204,8 +270,10 @@ Did you push already?
 └── NO
     ├── Want to fix/extend the last commit? → git commit --amend
     ├── Want to undo commit(s) but keep the work?
-    │   ├── Keep staged  → git reset --soft HEAD~N
+    │   ├── Keep staged   → git reset --soft HEAD~N
     │   └── Keep unstaged → git reset --mixed HEAD~N
     ├── Want to throw the work away entirely? → git reset --hard HEAD~N
-    └── Want to set work aside temporarily? → git stash
+    ├── Want to set work aside temporarily? → git stash
+    ├── Want one specific file back from history? → git restore --source=<commit> -- file
+    └── Want to delete untracked files? → git clean -fd
 ```

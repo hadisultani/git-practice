@@ -98,3 +98,7 @@ you rebased it, their history and yours are now incompatible.
 git config --global pull.rebase true
 # Now plain "git pull" always rebases instead of creating a merge commit
 ```
+
+> This chapter covers rebase as it relates to staying in sync with a remote.
+> For the full rebase guide — interactive rebase, conflict resolution, force push,
+> and the golden rule — see [06-rebase.md](06-rebase.md).
