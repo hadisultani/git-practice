@@ -1,0 +1,55 @@
+name: Build Book
+
+# ── Triggers ────────────────────────────────────────────────────────────────
+# Runs whenever a push to main changes the notes, the book assets,
+# or the build script itself. Skips runs triggered by the bot's own commit.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "notes/**"
+      - "book/**"
+      - "build.sh"
+
+# ── Permissions ─────────────────────────────────────────────────────────────
+# contents: write is required so the workflow can commit the generated files
+# back to the repository.
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Generate HTML and PDF
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the full repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Install Pandoc and the minimal LaTeX distribution needed for PDF.
+      #    texlive-xetex provides the xelatex engine.
+      #    texlive-fonts-recommended covers the default fonts.
+      - name: Install Pandoc and LaTeX
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc texlive-xetex texlive-fonts-recommended
+
+      # 3. Run the same build script used locally — HTML and PDF land in dist/
+      - name: Build HTML and PDF
+        run: bash build.sh
+
+      # 4. Commit the generated files back to the repo.
+      #    The bot identity is the standard GitHub Actions identity.
+      #    "git diff --cached --quiet" exits 0 if nothing changed (e.g. a
+      #    commit that only touched the workflow file itself), so we only
+      #    commit when there is actually something new.
+      #    [skip ci] in the message tells GitHub Actions not to re-trigger
+      #    this workflow on the bot's own commit — preventing an infinite loop.
+      - name: Commit generated files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist/
+          git diff --cached --quiet || git commit -m "chore: rebuild book output [skip ci]"
+          git push
