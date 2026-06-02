@@ -15,7 +15,7 @@ git-practice/
 │   ├── 05-undoing.md           ← amend, reset, revert, stash
 │   ├── 06-rebase.md            ← rebase concept + practice
 │   ├── 07-pull-requests.md     ← PR workflow, squash merge, branch protection, auto-merge
-│   └── 08-github-actions.md    ← (coming up)
+│   └── 08-github-actions.md    ← workflows, CI, secrets, matrix builds
 │   └── 09-security.md          ← 2FA, branch protection, secret scanning, SSH
 └── practice/
     └── sandbox.md              ← scratch file for trying things out
@@ -32,7 +32,7 @@ git-practice/
 | [05-undoing.md](notes/05-undoing.md) | Amend, reset soft/mixed/hard, revert, stash |
 | [06-rebase.md](notes/06-rebase.md) | Basic rebase, interactive rebase, force push safely |
 | [07-pull-requests.md](notes/07-pull-requests.md) | PR workflow, merge strategies, branch protection, GitHub CLI |
-| [08-github-actions.md](notes/08-github-actions.md) | *(coming up)* |
+| [08-github-actions.md](notes/08-github-actions.md) | Workflows, triggers, jobs, secrets, caching, matrix builds, branch protection integration |
 | [09-security.md](notes/09-security.md) | 2FA, branch protection, secret scanning, SSH, signed commits |
 
 ## Environment
