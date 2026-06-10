@@ -31,7 +31,7 @@ build_html() {
         --toc \
         --toc-depth=2 \
         --css="$CSS" \
-        --highlight-style=tango \
+        --syntax-highlighting=tango \
         -o "$HTML_OUT"
     echo "  ✓ $HTML_OUT"
 }
@@ -43,7 +43,7 @@ build_pdf() {
         --toc \
         --toc-depth=2 \
         --pdf-engine=xelatex \
-        --highlight-style=tango \
+        --syntax-highlighting=tango \
         -V geometry:margin=1in \
         -o "$PDF_OUT"
     echo "  ✓ $PDF_OUT"
